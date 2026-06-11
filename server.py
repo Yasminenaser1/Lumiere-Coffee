@@ -60,6 +60,28 @@ def init_db():
         if count == 0 and os.path.exists(CSV_PATH):
             n = _load_csv(conn)
             print(f"[CSV] Auto-loaded {n} transactions from {CSV_PATH}")
+        elif count == 0:
+            # No CSV available (e.g. Render deploy) — seed demo data so stats endpoints always work
+            demo = [
+                (1, "2026-06-01", "Flat White",   4.50, "C001"),
+                (2, "2026-06-01", "Croissant",    3.25, "C002"),
+                (3, "2026-06-02", "Iced Matcha",  5.75, "C001"),
+                (4, "2026-06-02", "Espresso",     3.00, "C003"),
+                (5, "2026-06-03", "Cappuccino",   4.00, "C002"),
+                (6, "2026-06-03", "Banana Bread", 4.00, "C004"),
+                (7, "2026-06-04", "Cold Brew",    5.00, "C001"),
+                (8, "2026-06-04", "Latte",        4.50, "C005"),
+                (9, "2026-06-05", "Flat White",   4.50, "C003"),
+                (10,"2026-06-05", "Matcha Latte", 5.50, "C002"),
+                (11,"2026-06-06", "Espresso",     3.00, "C006"),
+                (12,"2026-06-07", "Iced Latte",   5.00, "C001"),
+            ]
+            conn.executemany(
+                "INSERT OR IGNORE INTO transactions (id, date, item, amount, customer_id) VALUES (?,?,?,?,?)",
+                demo
+            )
+            conn.commit()
+            print("[DB] Seeded 12 demo transactions (no CSV found)")
 
 # ---------------------------------------------------------------------------
 # Request handler
@@ -182,7 +204,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/orders":
             self._post_order()
         elif self.path == "/api/log":
-            self._post_log()
+            self._post_order()   # alias — accepts same order fields
         else:
             self._json({"error": "Not found"}, 404)
 
@@ -358,46 +380,8 @@ class Handler(BaseHTTPRequestHandler):
         self._json([dict(r) for r in rows])
 
     def _get_summary(self, qs):
-        """GET /api/summary — totals + series from daily_log."""
-        day = qs.get("date", [None])[0]
-        with get_db() as conn:
-            if day:
-                where, params = "WHERE date = ?", (day,)
-            else:
-                where, params = "", ()
-
-            totals = conn.execute(f"""
-                SELECT
-                    COUNT(*)              AS total_entries,
-                    ROUND(SUM(sales), 2)  AS total_sales,
-                    SUM(customers)        AS total_customers
-                FROM daily_log {where}
-            """, params).fetchone()
-
-            by_sector = conn.execute(f"""
-                SELECT sector,
-                       ROUND(SUM(sales), 2) AS sales,
-                       SUM(customers)       AS customers
-                FROM daily_log {where}
-                GROUP BY sector
-                ORDER BY sales DESC
-            """, params).fetchall()
-
-            series = conn.execute("""
-                SELECT date,
-                       ROUND(SUM(sales), 2) AS sales,
-                       SUM(customers)       AS customers
-                FROM daily_log
-                GROUP BY date
-                ORDER BY date DESC
-                LIMIT 30
-            """).fetchall()
-
-        self._json({
-            "totals":    dict(totals) if totals else {},
-            "by_sector": [dict(r) for r in by_sector],
-            "series":    [dict(r) for r in series],
-        })
+        """GET /api/summary — alias for /api/stats, returns totals with revenue."""
+        self._get_stats(qs)
 
     # ---- orders handlers ----
 

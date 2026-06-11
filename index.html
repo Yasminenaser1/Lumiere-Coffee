@@ -1193,25 +1193,24 @@ function newOrder() {
 let _aiLoaded = false;
 let _aiStats = null; // cached stats for local Q&A
 
+async function safeFetch(url, fallback) {
+  try {
+    const r = await fetch(url);
+    const text = await r.text();
+    return text ? JSON.parse(text) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
 async function loadAI() {
   // Load stats-driven cards + charts (always fresh)
-  let rev, items, rc, at;
-  try {
-    [rev, items, rc, at] = await Promise.all([
-      fetch('/api/stats/revenue-by-day?limit=14').then(r => r.json()),
-      fetch('/api/stats/top-items?limit=5').then(r => r.json()),
-      fetch('/api/stats/repeat-customers').then(r => r.json()),
-      fetch('/api/stats/average-ticket').then(r => r.json()),
-    ]);
-  } catch (e) {
-    // Network error — server not reachable
-    ['ai-avg-ticket','ai-total-revenue','ai-repeat-rate','ai-customers'].forEach(id => {
-      document.getElementById(id).textContent = '—';
-    });
-    document.getElementById('ai-summary-text').innerHTML =
-      '<span class="ai-error">⚠️ Server offline. Start the server to see live stats. (' + e.message + ')</span>';
-    return;
-  }
+  const [rev, items, rc, at] = await Promise.all([
+    safeFetch('/api/stats/revenue-by-day?limit=14', []),
+    safeFetch('/api/stats/top-items?limit=5', []),
+    safeFetch('/api/stats/repeat-customers', {total_customers:0,repeat_customers:0,one_time_customers:0,repeat_rate_pct:0}),
+    safeFetch('/api/stats/average-ticket', {total_transactions:0,total_revenue:0,avg_ticket:0,min_ticket:0,max_ticket:0}),
+  ]);
 
   // Stat cards
   document.getElementById('ai-avg-ticket').textContent   = '$' + (at.avg_ticket || 0);
