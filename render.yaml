@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: lumiere-coffee
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false      # you'll set this in Render's dashboard
+    disk:
+      name: coffee-db
+      mountPath: /data
+      sizeGB: 1

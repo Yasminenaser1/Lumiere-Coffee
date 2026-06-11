@@ -1,0 +1,201 @@
+id,date,item,amount,customer_id
+200,2026-03-07,Bagel & Cream Cheese,5.14,cust_011
+47,2026-03-08,Iced Matcha,5.6,cust_029
+186,2026-03-10,Banana Bread,4.14,cust_041
+10,2026-03-15,Granola Bowl,6.39,cust_021
+154,2026-03-15,Chai Latte,5.24,cust_008
+35,2026-03-18,Granola Bowl,6.23,cust_021
+126,2026-03-19,Avocado Toast,9.28,cust_042
+26,2026-03-20,Flat White,4.32,cust_041
+160,2026-03-21,Latte,5.34,cust_016
+133,2026-03-22,Croissant,3.28,cust_043
+153,2026-03-22,Iced Matcha,5.97,cust_041
+54,2026-03-24,Iced Latte,5.39,cust_030
+84,2026-03-24,Latte,5.32,cust_016
+117,2026-03-24,Iced Matcha,5.96,cust_012
+27,2026-03-28,Iced Matcha,6.04,cust_014
+183,2026-03-28,Flat White,4.41,cust_014
+12,2026-03-29,Matcha Latte,5.4,cust_032
+142,2026-03-29,Iced Latte,5.64,cust_038
+100,2026-03-30,Macchiato,3.91,cust_031
+74,2026-04-01,Cappuccino,4.37,cust_015
+88,2026-04-02,Americano,3.69,cust_020
+37,2026-04-05,Iced Latte,5.56,cust_037
+36,2026-04-06,Bagel & Cream Cheese,4.87,cust_033
+91,2026-04-06,Avocado Toast,8.98,cust_028
+162,2026-04-06,Flat White,4.46,cust_010
+123,2026-04-07,Avocado Toast,9.04,cust_014
+106,2026-04-08,Banana Bread,4.16,cust_040
+148,2026-04-08,Espresso,3.13,cust_041
+166,2026-04-08,Latte,5.5,cust_026
+192,2026-04-08,Cappuccino,4.39,cust_041
+55,2026-04-10,Iced Latte,5.24,cust_013
+85,2026-04-10,Cold Brew,5.1,cust_017
+185,2026-04-10,Bagel & Cream Cheese,5.17,cust_043
+135,2026-04-11,Americano,3.6,cust_030
+118,2026-04-12,Macchiato,4.4,cust_028
+92,2026-04-13,Granola Bowl,6.93,cust_030
+4,2026-04-14,Americano,3.37,cust_007
+7,2026-04-14,Chai Latte,5.49,cust_015
+44,2026-04-14,Espresso,2.97,cust_039
+45,2026-04-14,Iced Matcha,5.9,cust_017
+101,2026-04-14,Chai Latte,5.49,cust_013
+42,2026-04-15,Chai Latte,5.21,cust_042
+94,2026-04-15,Croissant,3.25,cust_032
+1,2026-04-16,Granola Bowl,6.26,cust_028
+19,2026-04-19,Macchiato,4.1,cust_007
+114,2026-04-19,Avocado Toast,8.23,cust_045
+28,2026-04-20,Blueberry Muffin,3.45,cust_031
+29,2026-04-20,Avocado Toast,9.18,cust_004
+76,2026-04-20,Croissant,3.53,cust_038
+152,2026-04-20,Granola Bowl,6.53,cust_026
+60,2026-04-21,Cold Brew,5.02,cust_005
+150,2026-04-21,Earl Grey,3.6,cust_018
+17,2026-04-22,Flat White,4.73,cust_008
+38,2026-04-22,Banana Bread,4.19,cust_037
+40,2026-04-22,Cappuccino,4.28,cust_040
+161,2026-04-23,Cold Brew,5.36,cust_015
+195,2026-04-23,Latte,5.01,cust_005
+2,2026-04-24,Granola Bowl,6.58,cust_029
+146,2026-04-24,Chai Latte,4.77,cust_043
+156,2026-04-26,Granola Bowl,6.58,cust_010
+78,2026-04-27,Iced Latte,5.63,cust_018
+167,2026-04-27,Avocado Toast,8.17,cust_006
+199,2026-04-27,Cappuccino,4.62,cust_012
+159,2026-04-28,Latte,5.05,cust_013
+193,2026-04-28,Avocado Toast,8.94,cust_037
+41,2026-04-29,Earl Grey,3.79,cust_016
+103,2026-05-01,Blueberry Muffin,3.38,cust_001
+147,2026-05-01,Blueberry Muffin,3.76,cust_019
+163,2026-05-01,Flat White,4.39,cust_004
+178,2026-05-01,Flat White,4.34,cust_034
+70,2026-05-02,Granola Bowl,6.76,cust_029
+107,2026-05-02,Avocado Toast,8.45,cust_038
+198,2026-05-02,Matcha Latte,5.72,cust_033
+31,2026-05-03,Banana Bread,3.91,cust_030
+81,2026-05-03,Avocado Toast,8.31,cust_017
+32,2026-05-04,Granola Bowl,6.27,cust_042
+68,2026-05-04,Flat White,4.88,cust_007
+144,2026-05-04,Chai Latte,5.23,cust_028
+157,2026-05-04,Iced Matcha,5.49,cust_024
+182,2026-05-04,Blueberry Muffin,3.6,cust_020
+116,2026-05-05,Iced Matcha,5.48,cust_015
+122,2026-05-05,Granola Bowl,6.63,cust_004
+155,2026-05-05,Blueberry Muffin,3.39,cust_016
+181,2026-05-05,Banana Bread,3.96,cust_033
+190,2026-05-05,Americano,3.6,cust_013
+108,2026-05-06,Cold Brew,5.22,cust_017
+57,2026-05-07,Flat White,4.35,cust_017
+191,2026-05-07,Iced Latte,5.31,cust_017
+95,2026-05-09,Iced Matcha,5.94,cust_034
+177,2026-05-09,Matcha Latte,5.51,cust_012
+179,2026-05-09,Earl Grey,3.49,cust_021
+96,2026-05-10,Blueberry Muffin,3.66,cust_032
+143,2026-05-10,Iced Matcha,6.04,cust_030
+13,2026-05-11,Iced Matcha,5.58,cust_036
+25,2026-05-11,Iced Latte,5.41,cust_022
+43,2026-05-12,Americano,3.82,cust_009
+58,2026-05-12,Americano,3.64,cust_023
+65,2026-05-12,Matcha Latte,5.3,cust_016
+87,2026-05-13,Croissant,3.28,cust_013
+90,2026-05-13,Flat White,4.85,cust_032
+111,2026-05-13,Iced Matcha,6.14,cust_041
+131,2026-05-13,Granola Bowl,6.54,cust_021
+139,2026-05-14,Iced Latte,5.84,cust_028
+151,2026-05-14,Matcha Latte,5.89,cust_030
+165,2026-05-14,Latte,5.3,cust_043
+24,2026-05-15,Croissant,3.57,cust_042
+176,2026-05-15,Granola Bowl,6.2,cust_043
+124,2026-05-16,Blueberry Muffin,3.39,cust_041
+102,2026-05-17,Granola Bowl,6.3,cust_003
+158,2026-05-17,Earl Grey,3.38,cust_044
+50,2026-05-18,Earl Grey,3.44,cust_016
+51,2026-05-18,Banana Bread,4.38,cust_010
+71,2026-05-18,Granola Bowl,6.61,cust_011
+98,2026-05-18,Earl Grey,3.55,cust_036
+14,2026-05-19,Croissant,3.26,cust_009
+33,2026-05-19,Latte,4.87,cust_001
+52,2026-05-19,Banana Bread,3.81,cust_022
+53,2026-05-19,Iced Latte,5.45,cust_045
+59,2026-05-19,Bagel & Cream Cheese,4.84,cust_037
+82,2026-05-19,Croissant,3.22,cust_027
+115,2026-05-19,Granola Bowl,6.66,cust_006
+127,2026-05-19,Bagel & Cream Cheese,5.28,cust_027
+137,2026-05-19,Granola Bowl,6.55,cust_021
+73,2026-05-20,Iced Matcha,5.84,cust_019
+79,2026-05-20,Croissant,3.44,cust_030
+99,2026-05-20,Iced Matcha,5.66,cust_013
+104,2026-05-20,Macchiato,4.38,cust_017
+130,2026-05-20,Blueberry Muffin,3.78,cust_029
+138,2026-05-20,Granola Bowl,6.21,cust_005
+188,2026-05-20,Banana Bread,4.31,cust_016
+197,2026-05-20,Granola Bowl,7.11,cust_003
+21,2026-05-21,Chai Latte,4.93,cust_016
+64,2026-05-21,Cold Brew,5.13,cust_011
+67,2026-05-21,Cold Brew,5.29,cust_025
+173,2026-05-21,Banana Bread,4.32,cust_004
+5,2026-05-22,Latte,5.3,cust_035
+62,2026-05-22,Espresso,2.94,cust_043
+113,2026-05-22,Latte,4.87,cust_020
+149,2026-05-22,Earl Grey,3.71,cust_006
+97,2026-05-23,Croissant,3.42,cust_020
+110,2026-05-23,Iced Latte,5.46,cust_019
+141,2026-05-23,Banana Bread,4.14,cust_012
+77,2026-05-24,Croissant,3.5,cust_027
+93,2026-05-24,Iced Latte,5.91,cust_006
+164,2026-05-24,Cappuccino,4.6,cust_024
+23,2026-05-25,Banana Bread,4.38,cust_035
+174,2026-05-25,Blueberry Muffin,3.44,cust_007
+75,2026-05-26,Banana Bread,4.04,cust_035
+69,2026-05-27,Granola Bowl,6.42,cust_008
+194,2026-05-27,Matcha Latte,5.35,cust_005
+6,2026-05-28,Chai Latte,5.37,cust_040
+34,2026-05-28,Granola Bowl,6.82,cust_032
+120,2026-05-28,Blueberry Muffin,3.48,cust_026
+121,2026-05-28,Matcha Latte,5.43,cust_008
+105,2026-05-29,Espresso,3.22,cust_020
+145,2026-05-29,Croissant,3.5,cust_007
+18,2026-05-30,Matcha Latte,5.32,cust_028
+39,2026-05-30,Matcha Latte,5.42,cust_026
+168,2026-05-30,Granola Bowl,6.87,cust_025
+170,2026-05-30,Iced Matcha,5.79,cust_010
+8,2026-05-31,Earl Grey,3.43,cust_018
+80,2026-05-31,Croissant,3.38,cust_043
+112,2026-05-31,Americano,3.61,cust_042
+175,2026-05-31,Iced Matcha,5.96,cust_028
+72,2026-06-01,Iced Latte,5.92,cust_018
+184,2026-06-01,Americano,3.33,cust_028
+66,2026-06-02,Flat White,4.31,cust_031
+109,2026-06-02,Cappuccino,4.38,cust_027
+125,2026-06-02,Granola Bowl,6.19,cust_027
+20,2026-06-03,Macchiato,4.12,cust_034
+128,2026-06-03,Granola Bowl,6.32,cust_013
+169,2026-06-03,Americano,3.77,cust_042
+11,2026-06-04,Latte,5.35,cust_026
+56,2026-06-04,Iced Matcha,5.77,cust_033
+61,2026-06-04,Chai Latte,5.13,cust_043
+86,2026-06-04,Macchiato,4.38,cust_007
+129,2026-06-04,Banana Bread,4.0,cust_033
+132,2026-06-04,Croissant,3.2,cust_027
+189,2026-06-04,Chai Latte,5.31,cust_015
+196,2026-06-04,Chai Latte,4.81,cust_006
+30,2026-06-05,Croissant,3.44,cust_007
+49,2026-06-05,Espresso,2.87,cust_024
+119,2026-06-05,Earl Grey,3.54,cust_021
+134,2026-06-05,Latte,4.84,cust_038
+140,2026-06-05,Matcha Latte,5.88,cust_019
+172,2026-06-05,Latte,5.19,cust_036
+9,2026-06-06,Macchiato,4.12,cust_016
+15,2026-06-06,Americano,3.41,cust_011
+89,2026-06-06,Latte,5.01,cust_028
+171,2026-06-06,Cappuccino,4.34,cust_007
+180,2026-06-06,Latte,4.87,cust_040
+16,2026-06-07,Croissant,3.38,cust_030
+22,2026-06-07,Blueberry Muffin,3.75,cust_035
+46,2026-06-07,Banana Bread,4.3,cust_003
+83,2026-06-07,Granola Bowl,6.23,cust_023
+136,2026-06-07,Iced Matcha,5.75,cust_045
+187,2026-06-07,Matcha Latte,5.37,cust_040
+3,2026-06-08,Macchiato,4.22,cust_022
+48,2026-06-08,Cappuccino,4.91,cust_045
+63,2026-06-08,Chai Latte,4.91,cust_038

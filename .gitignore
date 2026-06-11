@@ -1,0 +1,17 @@
+# Environment variables — never commit these
+.env
+
+# Database
+coffee.db
+*.db-journal
+
+# Background job output
+daily_snapshot.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
