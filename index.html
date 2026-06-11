@@ -1193,35 +1193,35 @@ function newOrder() {
 let _aiLoaded = false;
 let _aiStats = null; // cached stats for local Q&A
 
-async function safeFetch(url, fallback) {
-  try {
-    const r = await fetch(url);
-    const text = await r.text();
-    return text ? JSON.parse(text) : fallback;
-  } catch (e) {
-    return fallback;
-  }
-}
-
 async function loadAI() {
-  // Load stats-driven cards + charts (always fresh)
-  const [rev, items, rc, at] = await Promise.all([
-    safeFetch('/api/stats/revenue-by-day?limit=14', []),
-    safeFetch('/api/stats/top-items?limit=5', []),
-    safeFetch('/api/stats/repeat-customers', {total_customers:0,repeat_customers:0,one_time_customers:0,repeat_rate_pct:0}),
-    safeFetch('/api/stats/average-ticket', {total_transactions:0,total_revenue:0,avg_ticket:0,min_ticket:0,max_ticket:0}),
-  ]);
+  // Load stats from the main /api/stats endpoint (always works)
+  let stats;
+  try {
+    const r = await fetch('/api/stats');
+    stats = await r.json();
+  } catch (e) {
+    document.getElementById('ai-summary-text').innerHTML =
+      '<span class="ai-error">⚠️ Could not reach the server. Make sure it is running.</span>';
+    return;
+  }
+
+  const totals = stats.totals || {};
+  const items  = stats.top_items || [];
+  const rev    = (stats.daily || []).slice(0, 14).reverse();
+  const totalRev   = totals.revenue || 0;
+  const totalOrds  = totals.total_orders || 0;
+  const avgTicket  = totalOrds > 0 ? (totalRev / totalOrds).toFixed(2) : '0.00';
 
   // Stat cards
-  document.getElementById('ai-avg-ticket').textContent   = '$' + (at.avg_ticket || 0);
-  _aiStats = { rev, items, rc, at }; // cache for Q&A
-  document.getElementById('ai-ticket-range').textContent = `min $${at.min_ticket} · max $${at.max_ticket}`;
-  document.getElementById('ai-total-revenue').textContent = '$' + (at.total_revenue || 0);
-  document.getElementById('ai-total-txns').textContent    = (at.total_transactions || 0) + ' transactions';
-  document.getElementById('ai-repeat-rate').textContent   = (rc.repeat_rate_pct || 0) + '%';
-  document.getElementById('ai-repeat-sub').textContent    = rc.repeat_customers + ' of ' + rc.total_customers + ' returned';
-  document.getElementById('ai-customers').textContent     = rc.total_customers || 0;
-  document.getElementById('ai-customers-sub').textContent = rc.one_time_customers + ' one-time';
+  document.getElementById('ai-avg-ticket').textContent   = '$' + avgTicket;
+  _aiStats = { rev, items, totals }; // cache for Q&A
+  document.getElementById('ai-ticket-range').textContent = totalOrds + ' orders total';
+  document.getElementById('ai-total-revenue').textContent = '$' + totalRev.toFixed(2);
+  document.getElementById('ai-total-txns').textContent    = totalOrds + ' orders';
+  document.getElementById('ai-repeat-rate').textContent   = (totals.total_items || 0);
+  document.getElementById('ai-repeat-sub').textContent    = 'items sold';
+  document.getElementById('ai-customers').textContent     = totalOrds;
+  document.getElementById('ai-customers-sub').textContent = 'orders logged';
 
   // Charts — isolated so a Chart.js error doesn't wipe the stat cards
   try {
