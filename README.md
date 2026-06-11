@@ -1,76 +1,131 @@
-# ☕ Lumière Coffee — Sector Daily Logger
+# ☕ Lumière Coffee — AI Customer-Insights Agent
 
-> A full-stack daily operations logger for a coffee shop SMB, built with Python and SQLite — zero external dependencies.
+> Turns a coffee shop's transaction data into AI-powered insights and an agentic Q&A that answers questions grounded in real numbers.
 
----
-
-## What it does
-
-Lumière Coffee is a web app that lets coffee shop staff log every order in real time and gives managers a live dashboard to track revenue, top-selling items, and daily trends.
-
-Built as part of an internship project exploring how small businesses can replace manual spreadsheet logging with a lightweight, self-hosted web tool.
+**Live demo:** https://lumiere-coffee.onrender.com  
+**GitHub:** https://github.com/Yasminenaser1/Lumiere-Coffee
 
 ---
 
-## Features
+## What it does (one sentence)
 
-- **POS Order Screen** — tap menu items to build a ticket, set the date, and place the order in one click
-- **Live Dashboard** — revenue, order count, items sold, and average order value — filterable by date or all-time
-- **Bar Charts** — category breakdown, top 5 items, and last 30 days of daily revenue
-- **Order History** — full log table with delete
-- **Daily Report API** — end-of-day summary: total revenue, avg order, top item, category mix
-- **Test Suite** — 12 automated API tests, zero pip installs needed
+Lumière Coffee ingests a shop's transaction history, runs a stats pipeline to surface revenue trends, top items, and customer loyalty, then uses Groq AI to generate plain-English insights and answer free-text questions — all through a live dashboard.
+
+---
+
+## Architecture (6 stages)
+
+```
+transactions.csv
+      │
+      ▼
+Stage 1 — Data Ingest (load_csv.py)
+      SQLite: transactions(id, date, item, amount, customer_id)
+      │
+      ▼
+Stage 2 — Stats Pipeline (stats.py)
+      revenue_by_day · top_items · repeat_customer_rate · average_ticket
+      │
+      ▼
+Stage 3 — AI Insights (insights.py + Groq)
+      Natural-language summary with actionable recommendations
+      │
+      ▼
+Stage 4 — Agentic Q&A (agent.py)
+      Tool-calling loop — answers grounded in real stats, not hallucinated
+      │
+      ▼
+Stage 5 — Dashboard (index.html)
+      Charts · stat cards · "Ask a question" box
+      │
+      ▼
+Stage 6 — Tests + Deploy (test_api.py · Render)
+      12 automated tests · live public URL
+```
 
 ---
 
 ## Tech stack
 
-| Layer     | Tech                                      |
-|-----------|-------------------------------------------|
-| Backend   | Python 3 — `http.server`, `sqlite3`       |
-| Database  | SQLite (single file, auto-created)        |
-| Frontend  | Vanilla JS SPA — no frameworks            |
-| Tests     | Python `unittest` + `urllib`              |
-| Deps      | **None** — runs on any machine with Python 3 |
-
-The zero-dependency constraint was intentional: the app should run on any computer, in any environment, without a setup step.
+| Layer     | Tech                                          |
+|-----------|-----------------------------------------------|
+| Backend   | Python 3 stdlib — `http.server`, `sqlite3`    |
+| Database  | SQLite (single file, auto-created)            |
+| AI        | Groq API (llama3-8b-8192) via `groq` SDK      |
+| Frontend  | Vanilla JS SPA — Chart.js + Recharts          |
+| Tests     | Python `unittest` + `urllib` (zero pip)       |
+| Deploy    | Render (free tier)                            |
 
 ---
 
 ## Quick start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/lumiere-coffee
-cd lumiere-coffee
+git clone https://github.com/Yasminenaser1/Lumiere-Coffee
+cd Lumiere-Coffee
+
+# 1 — add your Groq key
+cp .env.example .env
+# edit .env and set GROQ_API_KEY=gsk_...
+
+# 2 — load sample data
+python load_csv.py
+
+# 3 — start the server
 python server.py
 ```
 
 Then open **http://localhost:8000** in your browser.
 
-> Always open via `http://localhost:8000` — not by double-clicking `index.html` — the browser needs to reach the API.
+> Always open via `http://localhost:8000` — not by double-clicking `index.html`.
+
+---
+
+## Environment variables
+
+```
+GROQ_API_KEY=gsk_...   # required for AI insights and Q&A
+```
+
+Add `.env` to `.gitignore` — never commit API keys.
 
 ---
 
 ## API endpoints
 
-| Method   | Endpoint                       | Description                             |
-|----------|--------------------------------|-----------------------------------------|
-| `POST`   | `/api/log`                     | Log a new order                         |
-| `GET`    | `/api/summary?date=YYYY-MM-DD` | Aggregated stats (optional date filter) |
-| `GET`    | `/api/orders?date=YYYY-MM-DD`  | List orders                             |
-| `DELETE` | `/api/orders/:id`              | Delete an order                         |
-| `GET`    | `/api/daily-report?date=`      | Full end-of-day report for one date     |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/orders` | Log a new order |
+| `GET` | `/api/orders?date=` | List orders |
+| `GET` | `/api/stats?date=` | Aggregated dashboard stats |
+| `GET` | `/api/stats/revenue-by-day` | Revenue per day (last 30) |
+| `GET` | `/api/stats/top-items` | Best-selling items by revenue |
+| `GET` | `/api/stats/repeat-customers` | Repeat customer rate |
+| `GET` | `/api/stats/average-ticket` | Avg / min / max transaction value |
+| `GET` | `/api/insights` | AI-generated summary (Groq) |
+| `GET` | `/api/ask?q=` | Agentic Q&A — tool-calling loop |
+| `GET` | `/api/daily-report?date=` | End-of-day manager report |
+| `DELETE` | `/api/orders/:id` | Delete an order |
 
-**Example — log an order:**
-```bash
-curl -X POST http://localhost:8000/api/log \
-  -H "Content-Type: application/json" \
-  -d '{"item":"Flat White","category":"Espresso","qty":2,"price":4.50}'
+---
+
+## Project structure
+
 ```
-
-**Example — get today's summary:**
-```bash
-curl "http://localhost:8000/api/summary?date=2024-11-15"
+lumiere-coffee/
+├── server.py          # HTTP server + all API route handlers
+├── index.html         # Single-page app (home / menu / order / dashboard / AI)
+├── stats.py           # Stage 2 — stats pipeline (4 functions)
+├── insights.py        # Stage 3 — Groq AI summary
+├── agent.py           # Stage 4 — tool-calling Q&A agent
+├── load_csv.py        # Stage 1 — CSV → SQLite ingest
+├── transactions.csv   # 200 realistic sample transactions
+├── test_api.py        # 12 automated API tests
+├── Dockerfile         # Container config for deployment
+├── requirements.txt   # python-dotenv, requests, groq
+├── .env               # API keys (never committed)
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -83,31 +138,15 @@ Start the server first, then in a second terminal:
 python test_api.py
 ```
 
-All 12 tests should pass in under a second.
-
 ---
 
-## Project structure
+## Demo
 
-```
-lumiere-coffee/
-├── server.py       # HTTP server + all API route handlers
-├── index.html      # Single-page app (home / menu / order / dashboard)
-├── test_api.py     # Full API test suite
-├── CLAUDE.md       # Architecture notes and build plan
-├── coffee.db       # SQLite database (auto-created on first run)
-└── README.md       # This file
-```
-
----
-
-## What I'd add with more time
-
-- User authentication (staff PIN login)
-- Inventory tracking — deduct ingredients per order
-- CSV export for the daily report
-- Docker container for one-command deployment
-- Multi-location support
+Visit **https://lumiere-coffee.onrender.com** and:
+1. Go to **AI Insights** — see live stat cards and revenue/top-items charts
+2. Type a question in the Ask box — e.g. *"What was my best day?"*
+3. Go to **Dashboard** — filter by date, see order history
+4. Go to **Order** — tap items, place an order, see it appear in the dashboard
 
 ---
 
