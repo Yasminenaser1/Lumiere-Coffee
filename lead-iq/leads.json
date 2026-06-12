@@ -1,0 +1,44 @@
+{
+  "leads": [
+    {
+      "id": 1,
+      "company": "Blue Bottle Coffee",
+      "contact_name": "Sarah Chen",
+      "email": "",
+      "title": "Head od Operations",
+      "company_size": "51–200",
+      "score": 9,
+      "score_reason": "Sarah Chen is a decision maker at a growing coffee chain with a clear expansion plan and likely has a budget for new equipment and supplies.",
+      "status": "New",
+      "notes": "Looking to expand to 3 new locations next quarter",
+      "created_at": "2026-06-12T00:01:41.188Z"
+    },
+    {
+      "id": 2,
+      "company": "Cozy Cup Cafe",
+      "contact_name": "Mike Torres",
+      "email": "",
+      "title": "Owner",
+      "company_size": "1–5",
+      "score": 7,
+      "score_reason": "The lead is an owner of a small independent coffee shop with genuine interest in new equipment, indicating potential for conversion.",
+      "status": "New",
+      "notes": "Single location, interested in new equipment",
+      "created_at": "2026-06-12T00:02:45.004Z"
+    },
+    {
+      "id": 3,
+      "company": "Brew & Co",
+      "contact_name": "Lisa Park",
+      "email": "",
+      "title": "CEO",
+      "company_size": "21–50",
+      "score": 9,
+      "score_reason": "Lisa Park is the CEO of a growing coffee chain with 8 locations and a budget approved for Q3, indicating a high likelihood of becoming a paying customer.",
+      "status": "New",
+      "notes": "8 locations, budget approved for Q3",
+      "created_at": "2026-06-12T00:03:51.660Z"
+    }
+  ],
+  "nextId": 4
+}
